@@ -9,15 +9,28 @@ const $button = document.querySelector("button");
 // =============================================================================
 // **************** AXIOS API **************************
 // =============================================================================
-for (let i = 0; i < 10; i++) {
+//* EVENT LISTENERS
+$button.addEventListener("click", (e) => handleClick(e, $result));
+//* EVENT HANDLERS
+function handleClick(e, $element) {
+    $element.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+        generateRandomMailFrom(
+            "https://flynn.boolean.careers/exercises/api/random/mail",
+            $element
+        );
+    }
+}
+//! FUNCTIONS
+function generateRandomMailFrom(url, $element) {
     axios
-        .get("https://flynn.boolean.careers/exercises/api/random/mail")
+        .get(url)
         .then((response) => response.data)
         .then((data) => {
-            $result.insertAdjacentHTML("beforeend", `<span>${data.response}</span><br>`);
+            $element.insertAdjacentHTML(
+                "beforeend",
+                `<span>${data.response}</span><br>`
+            );
         })
         .catch((error) => console.error(error));
 }
-
-$button.addEventListener("click", () => console.log("test"));
-
