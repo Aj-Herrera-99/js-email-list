@@ -7,10 +7,12 @@ generare 10 indirizzi email e stamparli in pagina all'interno di una lista.
 const $result = document.getElementById("result");
 const $buttonAxios = document.getElementById("btn-axios");
 const $buttonFetch = document.getElementById("btn-fetch");
+const $buttonVanilla = document.getElementById("btn-vanilla");
 
 //* EVENT LISTENERS
 $buttonAxios.addEventListener("click", (e) => handleClickAxios(e, $result));
 $buttonFetch.addEventListener("click", (e) => handleClickFetch(e, $result));
+$buttonVanilla.addEventListener("click", (e) => handleClickVanilla(e, $result));
 
 //* EVENT HANDLERS
 //******************* AXIOS API *********************************** */
@@ -35,6 +37,16 @@ function handleClickFetch(e, $element) {
     }
 }
 
+//******************* VANILLA JS *********************************** */
+function handleClickVanilla(e, $element) {
+    $element.innerHTML = "";
+    for (let i = 0; i < 10; i++) {
+        vanillaJsGenerateRandomMailFrom(
+            "https://flynn.boolean.careers/exercises/api/random/mail",
+            $element
+        );
+    }
+}
 
 //! FUNCTIONS
 function axiosGenerateRandomMailFrom(url, $element) {
@@ -53,6 +65,31 @@ function axiosGenerateRandomMailFrom(url, $element) {
 function fetchGenerateRandomMailFrom(url, $element) {
     fetch(url)
         .then((response) => response.json())
+        .then((data) => {
+            $element.insertAdjacentHTML(
+                "beforeend",
+                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">${data.response}</span><br>`
+            );
+        })
+        .catch((error) => console.error(error));
+}
+
+function vanillaJsGenerateRandomMailFrom(url, $element) {
+    const myPromise = new Promise((resolve, reject) => {
+        const req = new XMLHttpRequest();
+        req.open("GET", url);
+        req.responseType = "json";
+        req.onload = () => {
+            if (req.status == 200) {
+                resolve(req.response);
+            } else {
+                reject(error);
+            }
+        };
+        req.send();
+    });
+
+    myPromise
         .then((data) => {
             $element.insertAdjacentHTML(
                 "beforeend",
