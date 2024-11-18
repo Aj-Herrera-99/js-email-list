@@ -56,7 +56,9 @@ function axiosGenerateRandomMailFrom(url, $element) {
         .then((data) => {
             $element.insertAdjacentHTML(
                 "beforeend",
-                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">${data.response}</span><br>`
+                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">
+                    Axios API: ${data.response}
+                </span><br>`
             );
         })
         .catch((error) => console.error(error));
@@ -68,7 +70,9 @@ function fetchGenerateRandomMailFrom(url, $element) {
         .then((data) => {
             $element.insertAdjacentHTML(
                 "beforeend",
-                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">${data.response}</span><br>`
+                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">
+                    Fetch API: ${data.response}
+                </span><br>`
             );
         })
         .catch((error) => console.error(error));
@@ -93,7 +97,9 @@ function vanillaJsGenerateRandomMailFrom(url, $element) {
         .then((data) => {
             $element.insertAdjacentHTML(
                 "beforeend",
-                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">${data.response}</span><br>`
+                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">
+                    Vanilla JS: ${data.response}
+                </span><br>`
             );
         })
         .catch((error) => console.error(error));
