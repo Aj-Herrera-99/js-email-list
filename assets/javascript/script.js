@@ -29,7 +29,7 @@ function generateRandomMailFrom(url, $element) {
         .then((data) => {
             $element.insertAdjacentHTML(
                 "beforeend",
-                `<span>${data.response}</span><br>`
+                `<span class="d-inline-block px-2 py-1 text-bg-info rounded-2 my-1">${data.response}</span><br>`
             );
         })
         .catch((error) => console.error(error));
