@@ -5,6 +5,7 @@ generare 10 indirizzi email e stamparli in pagina all'interno di una lista.
 */
 //* DOM elements selection
 const $result = document.getElementById("result");
+const $button = document.querySelector("button");
 // =============================================================================
 // **************** AXIOS API **************************
 // =============================================================================
@@ -17,4 +18,6 @@ for (let i = 0; i < 10; i++) {
         })
         .catch((error) => console.error(error));
 }
+
+$button.addEventListener("click", () => console.log("test"));
 
